@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 :root {
   --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   --msger-bg: #fff;
@@ -5,6 +7,8 @@
   --left-msg-bg: #ececec;
   --right-msg-bg: #579ffb;
 }
+
+/* utils */
 
 html {
   box-sizing: border-box;
@@ -24,7 +28,7 @@ body {
   align-items: center;
   height: 100vh;
   background-image: var(--body-bg);
-  font-family: Helvetica, sans-serif;
+  font-family: "poppins", Helvetica, sans-serif;
 }
 
 .msger {
@@ -66,6 +70,9 @@ body {
 .msger-chat::-webkit-scrollbar-thumb {
   background: #bdbdbd;
 }
+
+/* chat styles */
+
 .msg {
   display: flex;
   align-items: flex-end;
@@ -83,10 +90,10 @@ body {
   border-radius: 50%;
 }
 .msg-bubble {
+  background: var(--left-msg-bg);
   max-width: 450px;
   padding: 15px;
   border-radius: 15px;
-  background: var(--left-msg-bg);
 }
 .msg-info {
   display: flex;
@@ -106,6 +113,8 @@ body {
   border-bottom-left-radius: 0;
 }
 
+/* user message styles */
+
 .right-msg {
   flex-direction: row-reverse;
 }
@@ -118,35 +127,104 @@ body {
   margin: 0 0 0 10px;
 }
 
+/* form-input style */
+
 .msger-inputarea {
   display: flex;
-  padding: 10px;
-  border-top: var(--border);
-  background: #eee;
-}
-.msger-inputarea * {
-  padding: 10px;
+  padding: 0.5rem 1rem;
+  outline: none;
   border: none;
-  border-radius: 3px;
-  font-size: 1em;
 }
 .msger-input {
-  flex: 1;
-  background: #ddd;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0.4rem 0.7rem;
+  flex-grow: 1;
+  font-family: inherit;
 }
+.msger-input::placeholder {
+  opacity: 0.6;
+}
+
 .msger-send-btn {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
   margin-left: 10px;
-  background: rgb(0, 196, 65);
-  color: #fff;
+  border: none;
   font-weight: bold;
+  font-size: 1.5rem;
+  background: none;
   cursor: pointer;
-  transition: background 0.23s;
+  transition: transform 0.15s;
+  color: rgb(36, 98, 0);
+  border-radius: 50%;
 }
-.msger-send-btn:hover {
-  background: rgb(0, 180, 50);
+.msger-send-btn:active {
+  transform: scale(0.95);
 }
+
+/* chat interface */
 
 .msger-chat {
   background-color: #fcfcfe;
   background-image: url("https://leverageedu.com/blog/wp-content/uploads/2019/09/Importance-of-Books-800x500.png");
+}
+
+/* loading bubble */
+.typing-anim {
+  background-color: var(--left-msg-bg);
+  padding: 16px 28px;
+  -webkit-border-radius: 20px;
+  -webkit-border-bottom-left-radius: 2px;
+  -moz-border-radius: 20px;
+  -moz-border-radius-bottomleft: 2px;
+  border-radius: 20px;
+  border-bottom-left-radius: 2px;
+  display: none;
+}
+.typing {
+  align-items: center;
+  display: flex;
+  height: 17px;
+}
+.typing .dot {
+  animation: typingAnimation 2s infinite ease-in-out;
+  background-color: #333;
+  border-radius: 50%;
+  height: 7px;
+  margin-right: 5px;
+  width: 7px;
+}
+.typing .dot:nth-child(1) {
+  animation-delay: 200ms;
+}
+.typing .dot:nth-child(2) {
+  animation-delay: 320ms;
+}
+.typing .dot:nth-child(3) {
+  animation-delay: 440ms;
+}
+.typing .dot:last-child {
+  margin-right: 0;
+}
+
+.active {
+  display: inline-block;
+}
+
+@keyframes typingAnimation {
+  0% {
+    transform: translateY(0px);
+    background-color: #333;
+  }
+  30% {
+    transform: translateY(-7px);
+    background-color: rgba(51, 51, 51, 0.7);
+  }
+  48% {
+    transform: translateY(0px);
+    background-color: rgba(51, 51, 51, 0.45);
+  }
 }

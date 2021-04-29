@@ -1,21 +1,24 @@
 const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
+const msgTime = get(".msg-info-time");
+
+msgTime.innerText = `${formatDate(new Date())}`;
 
 // Icons made by Freepik from www.flaticon.com
 const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
 const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
-const BOT_NAME = "                   Bot";
+const BOT_NAME = "Bot";
 const PERSON_NAME = "You";
 
 msgerForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
   const msgText = msgerInput.value;
   if (!msgText) return;
 
   appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
   msgerInput.value = "";
+  appendLoader();
   botResponse(msgText);
 });
 
@@ -38,14 +41,48 @@ function appendMessage(name, img, side, text) {
   msgerChat.scrollTop += 500;
 }
 
-function botResponse(rawText) {
-  // Bot Response
-  $.get("/get", { msg: rawText }).done(function (data) {
-    console.log(rawText);
-    console.log(data);
-    const msgText = data;
-    appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+function appendLoader() {
+  const loaderHTML = `
+<div class="msg left-msg loader">
+  <div class="msg-img" style="background-image: url(${BOT_IMG})"></div>
+  <div class="msg-bubble">
+  
+  <div className="typing-anim">
+  <div class="typing">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  </div>
+  </div>
+  
+  </div>
+</div>
+`;
+
+  msgerChat.insertAdjacentHTML("beforeend", loaderHTML);
+  msgerChat.scrollTop += 500;
+}
+
+function removeLoader() {
+  var chat = get(".loader");
+  chat.remove();
+}
+
+// get the Bot Response
+
+async function botResponse(rawText) {
+  const res = await fetch("/botresponse", {
+    body: JSON.stringify({ msg: rawText }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
   });
+  const data = await res.json();
+  const msgText = data.msg;
+  removeLoader();
+
+  appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
 }
 
 // Utils

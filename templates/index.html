@@ -7,8 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -32,9 +34,8 @@
                     </div>
 
                     <div class="msg-text">
-                        <p>Hi, welcome to Shantiniketan Women's College! May I know what are you looking for? 😄</p>
-                        <br> <br>
-                        <label>Admission</label>
+                        <p>Hi, Iam Shanti, a bot from Shantiniketan Women’s College. I can help you. May I know you name?</p>
+                        <!-- <label>Admission</label>
                         <input type="radio" id="admsr" name="primary" onclick="primary('admsdiv', 'admsr')">
                         <label>General Information</label>
                         <input type="radio" id="infor" name="primary" onclick="primary('infodiv', 'infor')">
@@ -42,7 +43,7 @@
                         <input type="radio" id="academicsr" name="primary"
                             onclick="primary('academicsdiv', 'academicsr')">
                         <label>Faculty</label>
-                        <input type="radio" id="facultyr" name="primary" onclick="primary('facultydiv', 'facultyr')">
+                        <input type="radio" id="facultyr" name="primary" onclick="primary('facultydiv', 'facultyr')"> -->
                     </div>
 
                     <div id="infodiv" style="display:none;">
@@ -129,29 +130,20 @@ Contact Number : +91 964 040 6778 </pre>
                         <input type="radio" id="facultyr3" name="faculty" onclick="faculty('mcom', 'facultyr3')"></p>
                         <a href="#" id="mcom" style="display: none;"> M. Com faculty details </a>
                     </div>
-                    <!-- one.js -->
-                    <script src="{{url_for('static',filename='js/one.js')}}"></script>
-
-                    <p id="demo"></p>
-                    <script src="myscript.js"></script>
-                    <form>
-                        <div class="msg-text">
-
-                        </div>
-                    </form>
+                    
                 </div>
-            </div>
             </div>
 
         </main>
         <form class="msger-inputarea">
-            <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
-            <button type="submit" class="msger-send-btn">Send</button>
+            <input type="text" class="msger-input" id="textInput" placeholder="Type your name here..." autocomplete="off">
+            <button type="submit" class="msger-send-btn"><i class="fas fa-paper-plane"></i></button>
         </form>
     </section>
-    <!-- partial -->
-    <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
-    <script src="{{url_for('static',filename='js/two.js')}}"></script>
+    <!-- text/js -->
+    <script src="{{url_for('static',filename='js/script.js')}} " type="javascript"></script>
+    <script src="{{url_for('static',filename='js/one.js')}} "></script>
+    <script src="{{url_for('static',filename='js/two.js')}} "></script>
 
 </body>
 
