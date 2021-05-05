@@ -17,5 +17,12 @@ def get_bot_response():
         return jsonify(statuscode=200, msg=str(chatbot.get_response(user_text)).lower())
 
 
+@app.route("/details",methods=['POST'])
+def details():
+    if request.method == "POST":
+        contact = request.get_json().get('contact')
+        email = request.get_json().get('email')
+        print(email,contact)
+        return jsonify(statuscode=200,msg={email:email,contact:contact})
 if __name__ == "__main__":
     app.run()
